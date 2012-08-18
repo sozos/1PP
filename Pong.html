@@ -1,0 +1,38 @@
+<html>
+<head>
+	<script type="text/javascript">
+		// Helper function
+		function loadScript(url){
+    		var script = document.createElement("script")
+    		script.type = "text/javascript";
+    		script.src = url;
+    		document.getElementsByTagName("head")[0].appendChild(script);
+		}
+
+		// Load BEFORE document is loaded
+		// Things like sprites need time to load -> load before document
+		loadScript("Pong.js");
+		loadScript("Sprites.js");
+		loadScript("Ball.js");
+		loadScript("Paddle.js");
+
+		// Load AFTER document is loaded
+		// Need to load after document because it calls "document"
+
+		// List of scripts to load
+		var list_to_load = new Array();
+		list_to_load.push("PongClient.js");
+		//list_to_load.push("PongBot.js");
+
+		// onload function
+		function loadScripts() {
+			for (var i = 0; i < list_to_load.length; i++) {
+				loadScript(list_to_load[i]);
+				console.log("Loaded: " + list_to_load);
+			}
+		}
+	</script>
+</head>
+<body onload="loadScripts()">
+</body>
+</html>
